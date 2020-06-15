@@ -6,12 +6,10 @@ Public Class Form1
 
     End Sub
 
-    Private Sub btUpload_Click(sender As Object, e As EventArgs) Handles btUpload.Click
-        Dim _bytes As New List(Of Byte)
-        _bytes.Add(Convert.ToByte(0))
-        _bytes.Add(Convert.ToByte(1))
-        Dim _fileTransferService As New FileTransferServiceClient(New BasicHttpBinding, New EndpointAddress("http://localhost:65254/FileTransferService.svc"))
-        _fileTransferService.UploadFile(_bytes.ToArray)
+    Private Sub btUpload_Click(sender As Object, e As EventArgs) Handles btDescargar.Click
+        Dim _fileTransferService As New FileTransferServiceClient(New BasicHttpBinding() With {.MaxReceivedMessageSize = 2147483647}, New EndpointAddress("http://localhost:65254/FileTransferService.svc"))
+        Dim _file = _fileTransferService.DownloadLastFile()
+        File.WriteAllBytes("C:\Users\DELL\Desktop\" & _file.FullName, _file.Bytes)
     End Sub
 
     Private Sub btUpload_DragOver(sender As Object, e As DragEventArgs) Handles Me.DragOver
@@ -27,7 +25,7 @@ Public Class Form1
         If files IsNot Nothing AndAlso files.Any() Then
             Dim _fileTransferService As New FileTransferServiceClient(New BasicHttpBinding, New EndpointAddress("http://localhost:65254/FileTransferService.svc"))
             Try
-                _fileTransferService.UploadFile(File.ReadAllBytes(files.First))
+                _fileTransferService.UploadFile(files.First.Split("\").Last, File.ReadAllBytes(files.First))
             Catch ex As Exception
                 Debug.Write("")
             End Try

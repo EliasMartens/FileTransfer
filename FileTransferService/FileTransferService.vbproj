@@ -111,6 +111,10 @@
       <DependentUpon>202006152147340_1.vb</DependentUpon>
     </Compile>
     <Compile Include="Migrations\202006152147340_1.vb" />
+    <Compile Include="Migrations\202006152228281_2.designer.vb">
+      <DependentUpon>202006152228281_2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006152228281_2.vb" />
     <Compile Include="Migrations\Configuration.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -127,11 +131,14 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="TransferFile.vb" />
+    <Compile Include="ServiceFile.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202006152147340_1.resx">
       <DependentUpon>202006152147340_1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006152228281_2.resx">
+      <DependentUpon>202006152228281_2.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

@@ -22,16 +22,18 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.btUpload = New DevExpress.XtraEditors.SimpleButton()
+        Me.btDescargar = New DevExpress.XtraEditors.SimpleButton()
         Me.SuspendLayout()
         '
-        'btUpload
+        'btDescargar
         '
-        Me.btUpload.Location = New System.Drawing.Point(89, 69)
-        Me.btUpload.Name = "btUpload"
-        Me.btUpload.Size = New System.Drawing.Size(75, 23)
-        Me.btUpload.TabIndex = 0
-        Me.btUpload.Text = "Upload"
+        Me.btDescargar.Appearance.Options.UseTextOptions = True
+        Me.btDescargar.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.btDescargar.Location = New System.Drawing.Point(69, 60)
+        Me.btDescargar.Name = "btDescargar"
+        Me.btDescargar.Size = New System.Drawing.Size(120, 43)
+        Me.btDescargar.TabIndex = 0
+        Me.btDescargar.Text = "Descargar Ultimo Archivo"
         '
         'Form1
         '
@@ -39,12 +41,12 @@ Partial Class Form1
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(267, 161)
-        Me.Controls.Add(Me.btUpload)
+        Me.Controls.Add(Me.btDescargar)
         Me.Name = "Form1"
         Me.Text = "Form1"
         Me.ResumeLayout(False)
 
     End Sub
 
-    Friend WithEvents btUpload As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents btDescargar As DevExpress.XtraEditors.SimpleButton
 End Class
