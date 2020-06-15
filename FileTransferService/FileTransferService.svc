@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="VB" Debug="true" Service="FileTransferService.FileTransferService" CodeBehind="FileTransferService.svc.vb" %>
