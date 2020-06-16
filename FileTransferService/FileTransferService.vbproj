@@ -131,7 +131,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="ServiceFile.vb" />
+    <Compile Include="FilePart.vb" />
+    <Compile Include="FileHeader.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202006152147340_1.resx">

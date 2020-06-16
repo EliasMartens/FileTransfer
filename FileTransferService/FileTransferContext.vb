@@ -8,5 +8,6 @@ Public Class FileTransferContext
         MyBase.New()
     End Sub
 
-    Property TransferFiles As DbSet(Of ServiceFile)
+    Property FileHeaders As DbSet(Of FileHeader)
+    Property FileParts As DbSet(Of FilePart)
 End Class
