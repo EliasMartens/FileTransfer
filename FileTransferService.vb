@@ -14,233 +14,559 @@ Option Explicit On
 Imports System.Runtime.Serialization
 
 Namespace FileTransferService
-
-    <System.Diagnostics.DebuggerStepThroughAttribute(),
-     System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),
-     System.Runtime.Serialization.DataContractAttribute(Name:="ResponseFile", [Namespace]:="http://schemas.datacontract.org/2004/07/FileTransferService")>
-    Partial Public Class ResponseFile
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
+     System.Runtime.Serialization.DataContractAttribute(Name:="BeginDownloadResponse", [Namespace]:="http://schemas.datacontract.org/2004/07/FileTransferService")>  _
+    Partial Public Class BeginDownloadResponse
         Inherits Object
         Implements System.Runtime.Serialization.IExtensibleDataObject
-
+        
         Private extensionDataField As System.Runtime.Serialization.ExtensionDataObject
-
+        
         Private BytesField() As Byte
-
+        
+        Private CompleteField As Boolean
+        
         Private FullNameField As String
-
+        
+        Private NextPartIDField As Integer
+        
+        Private PartCountField As Integer
+        
         Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
             Get
                 Return Me.extensionDataField
             End Get
             Set
-                Me.extensionDataField = Value
+                Me.extensionDataField = value
             End Set
         End Property
-
-        <System.Runtime.Serialization.DataMemberAttribute()>
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property Bytes() As Byte()
             Get
                 Return Me.BytesField
             End Get
             Set
-                Me.BytesField = Value
+                Me.BytesField = value
             End Set
         End Property
-
-        <System.Runtime.Serialization.DataMemberAttribute()>
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property Complete() As Boolean
+            Get
+                Return Me.CompleteField
+            End Get
+            Set
+                Me.CompleteField = value
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
         Public Property FullName() As String
             Get
                 Return Me.FullNameField
             End Get
             Set
-                Me.FullNameField = Value
+                Me.FullNameField = value
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property NextPartID() As Integer
+            Get
+                Return Me.NextPartIDField
+            End Get
+            Set
+                Me.NextPartIDField = value
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property PartCount() As Integer
+            Get
+                Return Me.PartCountField
+            End Get
+            Set
+                Me.PartCountField = value
+            End Set
+        End Property
+    End Class
+    
+    <System.Diagnostics.DebuggerStepThroughAttribute(),  _
+     System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0"),  _
+     System.Runtime.Serialization.DataContractAttribute(Name:="ContinueDownloadResponse", [Namespace]:="http://schemas.datacontract.org/2004/07/FileTransferService")>  _
+    Partial Public Class ContinueDownloadResponse
+        Inherits Object
+        Implements System.Runtime.Serialization.IExtensibleDataObject
+        
+        Private extensionDataField As System.Runtime.Serialization.ExtensionDataObject
+        
+        Private BytesField() As Byte
+        
+        Private CompleteField As Boolean
+        
+        Private NextPartIDField As Integer
+        
+        Public Property ExtensionData() As System.Runtime.Serialization.ExtensionDataObject Implements System.Runtime.Serialization.IExtensibleDataObject.ExtensionData
+            Get
+                Return Me.extensionDataField
+            End Get
+            Set
+                Me.extensionDataField = value
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property Bytes() As Byte()
+            Get
+                Return Me.BytesField
+            End Get
+            Set
+                Me.BytesField = value
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property Complete() As Boolean
+            Get
+                Return Me.CompleteField
+            End Get
+            Set
+                Me.CompleteField = value
+            End Set
+        End Property
+        
+        <System.Runtime.Serialization.DataMemberAttribute()>  _
+        Public Property NextPartID() As Integer
+            Get
+                Return Me.NextPartIDField
+            End Get
+            Set
+                Me.NextPartIDField = value
             End Set
         End Property
     End Class
 End Namespace
 
 
-<System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),
- System.ServiceModel.ServiceContractAttribute(ConfigurationName:="IFileTransferService")>
+<System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0"),  _
+ System.ServiceModel.ServiceContractAttribute(ConfigurationName:="IFileTransferService")>  _
 Public Interface IFileTransferService
-
-    <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IFileTransferService/UploadFile", ReplyAction:="http://tempuri.org/IFileTransferService/UploadFileResponse")>
-    Sub UploadFile(ByVal pFullName As String, ByVal pBytes() As Byte)
-
-    <System.ServiceModel.OperationContractAttribute(AsyncPattern:=True, Action:="http://tempuri.org/IFileTransferService/UploadFile", ReplyAction:="http://tempuri.org/IFileTransferService/UploadFileResponse")>
-    Function BeginUploadFile(ByVal pFullName As String, ByVal pBytes() As Byte, ByVal callback As System.AsyncCallback, ByVal asyncState As Object) As System.IAsyncResult
-
-    Sub EndUploadFile(ByVal result As System.IAsyncResult)
-
-    <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IFileTransferService/DownloadLastFile", ReplyAction:="http://tempuri.org/IFileTransferService/DownloadLastFileResponse")>
-    Function DownloadLastFile() As FileTransferService.ResponseFile
-
-    <System.ServiceModel.OperationContractAttribute(AsyncPattern:=True, Action:="http://tempuri.org/IFileTransferService/DownloadLastFile", ReplyAction:="http://tempuri.org/IFileTransferService/DownloadLastFileResponse")>
-    Function BeginDownloadLastFile(ByVal callback As System.AsyncCallback, ByVal asyncState As Object) As System.IAsyncResult
-
-    Function EndDownloadLastFile(ByVal result As System.IAsyncResult) As FileTransferService.ResponseFile
+    
+    <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IFileTransferService/InitializeFileUpload", ReplyAction:="http://tempuri.org/IFileTransferService/InitializeFileUploadResponse")>  _
+    Function InitializeFileUpload(ByVal pFullName As String, ByVal pFirstHundredBytes() As Byte) As Integer
+    
+    <System.ServiceModel.OperationContractAttribute(AsyncPattern:=true, Action:="http://tempuri.org/IFileTransferService/InitializeFileUpload", ReplyAction:="http://tempuri.org/IFileTransferService/InitializeFileUploadResponse")>  _
+    Function BeginInitializeFileUpload(ByVal pFullName As String, ByVal pFirstHundredBytes() As Byte, ByVal callback As System.AsyncCallback, ByVal asyncState As Object) As System.IAsyncResult
+    
+    Function EndInitializeFileUpload(ByVal result As System.IAsyncResult) As Integer
+    
+    <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IFileTransferService/ContinueFileUpload", ReplyAction:="http://tempuri.org/IFileTransferService/ContinueFileUploadResponse")>  _
+    Sub ContinueFileUpload(ByVal pHeaderID As Integer, ByVal pHundredBytes() As Byte)
+    
+    <System.ServiceModel.OperationContractAttribute(AsyncPattern:=true, Action:="http://tempuri.org/IFileTransferService/ContinueFileUpload", ReplyAction:="http://tempuri.org/IFileTransferService/ContinueFileUploadResponse")>  _
+    Function BeginContinueFileUpload(ByVal pHeaderID As Integer, ByVal pHundredBytes() As Byte, ByVal callback As System.AsyncCallback, ByVal asyncState As Object) As System.IAsyncResult
+    
+    Sub EndContinueFileUpload(ByVal result As System.IAsyncResult)
+    
+    <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IFileTransferService/FinalizeFileUpload", ReplyAction:="http://tempuri.org/IFileTransferService/FinalizeFileUploadResponse")>  _
+    Sub FinalizeFileUpload(ByVal pHeaderID As Integer, ByVal pHundredBytes() As Byte)
+    
+    <System.ServiceModel.OperationContractAttribute(AsyncPattern:=true, Action:="http://tempuri.org/IFileTransferService/FinalizeFileUpload", ReplyAction:="http://tempuri.org/IFileTransferService/FinalizeFileUploadResponse")>  _
+    Function BeginFinalizeFileUpload(ByVal pHeaderID As Integer, ByVal pHundredBytes() As Byte, ByVal callback As System.AsyncCallback, ByVal asyncState As Object) As System.IAsyncResult
+    
+    Sub EndFinalizeFileUpload(ByVal result As System.IAsyncResult)
+    
+    <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IFileTransferService/InitializeDownload", ReplyAction:="http://tempuri.org/IFileTransferService/InitializeDownloadResponse")>  _
+    Function InitializeDownload(ByVal pHeaderID As Integer) As FileTransferService.BeginDownloadResponse
+    
+    <System.ServiceModel.OperationContractAttribute(AsyncPattern:=true, Action:="http://tempuri.org/IFileTransferService/InitializeDownload", ReplyAction:="http://tempuri.org/IFileTransferService/InitializeDownloadResponse")>  _
+    Function BeginInitializeDownload(ByVal pHeaderID As Integer, ByVal callback As System.AsyncCallback, ByVal asyncState As Object) As System.IAsyncResult
+    
+    Function EndInitializeDownload(ByVal result As System.IAsyncResult) As FileTransferService.BeginDownloadResponse
+    
+    <System.ServiceModel.OperationContractAttribute(Action:="http://tempuri.org/IFileTransferService/ContinueDownload", ReplyAction:="http://tempuri.org/IFileTransferService/ContinueDownloadResponse")>  _
+    Function ContinueDownload(ByVal pPartID As Integer) As FileTransferService.ContinueDownloadResponse
+    
+    <System.ServiceModel.OperationContractAttribute(AsyncPattern:=true, Action:="http://tempuri.org/IFileTransferService/ContinueDownload", ReplyAction:="http://tempuri.org/IFileTransferService/ContinueDownloadResponse")>  _
+    Function BeginContinueDownload(ByVal pPartID As Integer, ByVal callback As System.AsyncCallback, ByVal asyncState As Object) As System.IAsyncResult
+    
+    Function EndContinueDownload(ByVal result As System.IAsyncResult) As FileTransferService.ContinueDownloadResponse
 End Interface
 
-<System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")>
+<System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")>  _
 Public Interface IFileTransferServiceChannel
     Inherits IFileTransferService, System.ServiceModel.IClientChannel
 End Interface
 
-<System.Diagnostics.DebuggerStepThroughAttribute(),
- System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")>
-Partial Public Class DownloadLastFileCompletedEventArgs
+<System.Diagnostics.DebuggerStepThroughAttribute(),  _
+ System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")>  _
+Partial Public Class InitializeFileUploadCompletedEventArgs
     Inherits System.ComponentModel.AsyncCompletedEventArgs
-
+    
     Private results() As Object
-
+    
     Public Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
         MyBase.New(exception, cancelled, userState)
         Me.results = results
     End Sub
-
-    Public ReadOnly Property Result() As FileTransferService.ResponseFile
+    
+    Public ReadOnly Property Result() As Integer
         Get
-            MyBase.RaiseExceptionIfNecessary()
-            Return CType(Me.results(0), FileTransferService.ResponseFile)
+            MyBase.RaiseExceptionIfNecessary
+            Return CType(Me.results(0),Integer)
         End Get
     End Property
 End Class
 
-<System.Diagnostics.DebuggerStepThroughAttribute(),
- System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")>
+<System.Diagnostics.DebuggerStepThroughAttribute(),  _
+ System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")>  _
+Partial Public Class InitializeDownloadCompletedEventArgs
+    Inherits System.ComponentModel.AsyncCompletedEventArgs
+    
+    Private results() As Object
+    
+    Public Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
+        MyBase.New(exception, cancelled, userState)
+        Me.results = results
+    End Sub
+    
+    Public ReadOnly Property Result() As FileTransferService.BeginDownloadResponse
+        Get
+            MyBase.RaiseExceptionIfNecessary
+            Return CType(Me.results(0),FileTransferService.BeginDownloadResponse)
+        End Get
+    End Property
+End Class
+
+<System.Diagnostics.DebuggerStepThroughAttribute(),  _
+ System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")>  _
+Partial Public Class ContinueDownloadCompletedEventArgs
+    Inherits System.ComponentModel.AsyncCompletedEventArgs
+    
+    Private results() As Object
+    
+    Public Sub New(ByVal results() As Object, ByVal exception As System.Exception, ByVal cancelled As Boolean, ByVal userState As Object)
+        MyBase.New(exception, cancelled, userState)
+        Me.results = results
+    End Sub
+    
+    Public ReadOnly Property Result() As FileTransferService.ContinueDownloadResponse
+        Get
+            MyBase.RaiseExceptionIfNecessary
+            Return CType(Me.results(0),FileTransferService.ContinueDownloadResponse)
+        End Get
+    End Property
+End Class
+
+<System.Diagnostics.DebuggerStepThroughAttribute(),  _
+ System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")>  _
 Partial Public Class FileTransferServiceClient
     Inherits System.ServiceModel.ClientBase(Of IFileTransferService)
     Implements IFileTransferService
-
-    Private onBeginUploadFileDelegate As BeginOperationDelegate
-
-    Private onEndUploadFileDelegate As EndOperationDelegate
-
-    Private onUploadFileCompletedDelegate As System.Threading.SendOrPostCallback
-
-    Private onBeginDownloadLastFileDelegate As BeginOperationDelegate
-
-    Private onEndDownloadLastFileDelegate As EndOperationDelegate
-
-    Private onDownloadLastFileCompletedDelegate As System.Threading.SendOrPostCallback
-
+    
+    Private onBeginInitializeFileUploadDelegate As BeginOperationDelegate
+    
+    Private onEndInitializeFileUploadDelegate As EndOperationDelegate
+    
+    Private onInitializeFileUploadCompletedDelegate As System.Threading.SendOrPostCallback
+    
+    Private onBeginContinueFileUploadDelegate As BeginOperationDelegate
+    
+    Private onEndContinueFileUploadDelegate As EndOperationDelegate
+    
+    Private onContinueFileUploadCompletedDelegate As System.Threading.SendOrPostCallback
+    
+    Private onBeginFinalizeFileUploadDelegate As BeginOperationDelegate
+    
+    Private onEndFinalizeFileUploadDelegate As EndOperationDelegate
+    
+    Private onFinalizeFileUploadCompletedDelegate As System.Threading.SendOrPostCallback
+    
+    Private onBeginInitializeDownloadDelegate As BeginOperationDelegate
+    
+    Private onEndInitializeDownloadDelegate As EndOperationDelegate
+    
+    Private onInitializeDownloadCompletedDelegate As System.Threading.SendOrPostCallback
+    
+    Private onBeginContinueDownloadDelegate As BeginOperationDelegate
+    
+    Private onEndContinueDownloadDelegate As EndOperationDelegate
+    
+    Private onContinueDownloadCompletedDelegate As System.Threading.SendOrPostCallback
+    
     Public Sub New()
         MyBase.New
     End Sub
-
+    
     Public Sub New(ByVal endpointConfigurationName As String)
         MyBase.New(endpointConfigurationName)
     End Sub
-
+    
     Public Sub New(ByVal endpointConfigurationName As String, ByVal remoteAddress As String)
         MyBase.New(endpointConfigurationName, remoteAddress)
     End Sub
-
+    
     Public Sub New(ByVal endpointConfigurationName As String, ByVal remoteAddress As System.ServiceModel.EndpointAddress)
         MyBase.New(endpointConfigurationName, remoteAddress)
     End Sub
-
+    
     Public Sub New(ByVal binding As System.ServiceModel.Channels.Binding, ByVal remoteAddress As System.ServiceModel.EndpointAddress)
         MyBase.New(binding, remoteAddress)
     End Sub
-
-    Public Event UploadFileCompleted As System.EventHandler(Of System.ComponentModel.AsyncCompletedEventArgs)
-
-    Public Event DownloadLastFileCompleted As System.EventHandler(Of DownloadLastFileCompletedEventArgs)
-
-    Public Sub UploadFile(ByVal pFullName As String, ByVal pBytes() As Byte) Implements IFileTransferService.UploadFile
-        MyBase.Channel.UploadFile(pFullName, pBytes)
-    End Sub
-
-    <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
-    Public Function BeginUploadFile(ByVal pFullName As String, ByVal pBytes() As Byte, ByVal callback As System.AsyncCallback, ByVal asyncState As Object) As System.IAsyncResult Implements IFileTransferService.BeginUploadFile
-        Return MyBase.Channel.BeginUploadFile(pFullName, pBytes, callback, asyncState)
+    
+    Public Event InitializeFileUploadCompleted As System.EventHandler(Of InitializeFileUploadCompletedEventArgs)
+    
+    Public Event ContinueFileUploadCompleted As System.EventHandler(Of System.ComponentModel.AsyncCompletedEventArgs)
+    
+    Public Event FinalizeFileUploadCompleted As System.EventHandler(Of System.ComponentModel.AsyncCompletedEventArgs)
+    
+    Public Event InitializeDownloadCompleted As System.EventHandler(Of InitializeDownloadCompletedEventArgs)
+    
+    Public Event ContinueDownloadCompleted As System.EventHandler(Of ContinueDownloadCompletedEventArgs)
+    
+    Public Function InitializeFileUpload(ByVal pFullName As String, ByVal pFirstHundredBytes() As Byte) As Integer Implements IFileTransferService.InitializeFileUpload
+        Return MyBase.Channel.InitializeFileUpload(pFullName, pFirstHundredBytes)
     End Function
-
-    <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
-    Public Sub EndUploadFile(ByVal result As System.IAsyncResult) Implements IFileTransferService.EndUploadFile
-        MyBase.Channel.EndUploadFile(result)
-    End Sub
-
-    Private Function OnBeginUploadFile(ByVal inValues() As Object, ByVal callback As System.AsyncCallback, ByVal asyncState As Object) As System.IAsyncResult
-        Dim pFullName As String = CType(inValues(0), String)
-        Dim pBytes() As Byte = CType(inValues(1), Byte())
-        Return Me.BeginUploadFile(pFullName, pBytes, callback, asyncState)
+    
+    <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
+    Public Function BeginInitializeFileUpload(ByVal pFullName As String, ByVal pFirstHundredBytes() As Byte, ByVal callback As System.AsyncCallback, ByVal asyncState As Object) As System.IAsyncResult Implements IFileTransferService.BeginInitializeFileUpload
+        Return MyBase.Channel.BeginInitializeFileUpload(pFullName, pFirstHundredBytes, callback, asyncState)
     End Function
-
-    Private Function OnEndUploadFile(ByVal result As System.IAsyncResult) As Object()
-        Me.EndUploadFile(result)
-        Return Nothing
+    
+    <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
+    Public Function EndInitializeFileUpload(ByVal result As System.IAsyncResult) As Integer Implements IFileTransferService.EndInitializeFileUpload
+        Return MyBase.Channel.EndInitializeFileUpload(result)
     End Function
-
-    Private Sub OnUploadFileCompleted(ByVal state As Object)
-        If (Not (Me.UploadFileCompletedEvent) Is Nothing) Then
-            Dim e As InvokeAsyncCompletedEventArgs = CType(state, InvokeAsyncCompletedEventArgs)
-            RaiseEvent UploadFileCompleted(Me, New System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState))
-        End If
-    End Sub
-
-    Public Overloads Sub UploadFileAsync(ByVal pFullName As String, ByVal pBytes() As Byte)
-        Me.UploadFileAsync(pFullName, pBytes, Nothing)
-    End Sub
-
-    Public Overloads Sub UploadFileAsync(ByVal pFullName As String, ByVal pBytes() As Byte, ByVal userState As Object)
-        If (Me.onBeginUploadFileDelegate Is Nothing) Then
-            Me.onBeginUploadFileDelegate = AddressOf Me.OnBeginUploadFile
-        End If
-        If (Me.onEndUploadFileDelegate Is Nothing) Then
-            Me.onEndUploadFileDelegate = AddressOf Me.OnEndUploadFile
-        End If
-        If (Me.onUploadFileCompletedDelegate Is Nothing) Then
-            Me.onUploadFileCompletedDelegate = AddressOf Me.OnUploadFileCompleted
-        End If
-        MyBase.InvokeAsync(Me.onBeginUploadFileDelegate, New Object() {pFullName, pBytes}, Me.onEndUploadFileDelegate, Me.onUploadFileCompletedDelegate, userState)
-    End Sub
-
-    Public Function DownloadLastFile() As FileTransferService.ResponseFile Implements IFileTransferService.DownloadLastFile
-        Return MyBase.Channel.DownloadLastFile
+    
+    Private Function OnBeginInitializeFileUpload(ByVal inValues() As Object, ByVal callback As System.AsyncCallback, ByVal asyncState As Object) As System.IAsyncResult
+        Dim pFullName As String = CType(inValues(0),String)
+        Dim pFirstHundredBytes() As Byte = CType(inValues(1),Byte())
+        Return Me.BeginInitializeFileUpload(pFullName, pFirstHundredBytes, callback, asyncState)
     End Function
-
-    <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
-    Public Function BeginDownloadLastFile(ByVal callback As System.AsyncCallback, ByVal asyncState As Object) As System.IAsyncResult Implements IFileTransferService.BeginDownloadLastFile
-        Return MyBase.Channel.BeginDownloadLastFile(callback, asyncState)
-    End Function
-
-    <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>
-    Public Function EndDownloadLastFile(ByVal result As System.IAsyncResult) As FileTransferService.ResponseFile Implements IFileTransferService.EndDownloadLastFile
-        Return MyBase.Channel.EndDownloadLastFile(result)
-    End Function
-
-    Private Function OnBeginDownloadLastFile(ByVal inValues() As Object, ByVal callback As System.AsyncCallback, ByVal asyncState As Object) As System.IAsyncResult
-        Return Me.BeginDownloadLastFile(callback, asyncState)
-    End Function
-
-    Private Function OnEndDownloadLastFile(ByVal result As System.IAsyncResult) As Object()
-        Dim retVal As FileTransferService.ResponseFile = Me.EndDownloadLastFile(result)
+    
+    Private Function OnEndInitializeFileUpload(ByVal result As System.IAsyncResult) As Object()
+        Dim retVal As Integer = Me.EndInitializeFileUpload(result)
         Return New Object() {retVal}
     End Function
-
-    Private Sub OnDownloadLastFileCompleted(ByVal state As Object)
-        If (Not (Me.DownloadLastFileCompletedEvent) Is Nothing) Then
-            Dim e As InvokeAsyncCompletedEventArgs = CType(state, InvokeAsyncCompletedEventArgs)
-            RaiseEvent DownloadLastFileCompleted(Me, New DownloadLastFileCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState))
+    
+    Private Sub OnInitializeFileUploadCompleted(ByVal state As Object)
+        If (Not (Me.InitializeFileUploadCompletedEvent) Is Nothing) Then
+            Dim e As InvokeAsyncCompletedEventArgs = CType(state,InvokeAsyncCompletedEventArgs)
+            RaiseEvent InitializeFileUploadCompleted(Me, New InitializeFileUploadCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState))
         End If
     End Sub
-
-    Public Overloads Sub DownloadLastFileAsync()
-        Me.DownloadLastFileAsync(Nothing)
+    
+    Public Overloads Sub InitializeFileUploadAsync(ByVal pFullName As String, ByVal pFirstHundredBytes() As Byte)
+        Me.InitializeFileUploadAsync(pFullName, pFirstHundredBytes, Nothing)
     End Sub
-
-    Public Overloads Sub DownloadLastFileAsync(ByVal userState As Object)
-        If (Me.onBeginDownloadLastFileDelegate Is Nothing) Then
-            Me.onBeginDownloadLastFileDelegate = AddressOf Me.OnBeginDownloadLastFile
+    
+    Public Overloads Sub InitializeFileUploadAsync(ByVal pFullName As String, ByVal pFirstHundredBytes() As Byte, ByVal userState As Object)
+        If (Me.onBeginInitializeFileUploadDelegate Is Nothing) Then
+            Me.onBeginInitializeFileUploadDelegate = AddressOf Me.OnBeginInitializeFileUpload
         End If
-        If (Me.onEndDownloadLastFileDelegate Is Nothing) Then
-            Me.onEndDownloadLastFileDelegate = AddressOf Me.OnEndDownloadLastFile
+        If (Me.onEndInitializeFileUploadDelegate Is Nothing) Then
+            Me.onEndInitializeFileUploadDelegate = AddressOf Me.OnEndInitializeFileUpload
         End If
-        If (Me.onDownloadLastFileCompletedDelegate Is Nothing) Then
-            Me.onDownloadLastFileCompletedDelegate = AddressOf Me.OnDownloadLastFileCompleted
+        If (Me.onInitializeFileUploadCompletedDelegate Is Nothing) Then
+            Me.onInitializeFileUploadCompletedDelegate = AddressOf Me.OnInitializeFileUploadCompleted
         End If
-        MyBase.InvokeAsync(Me.onBeginDownloadLastFileDelegate, Nothing, Me.onEndDownloadLastFileDelegate, Me.onDownloadLastFileCompletedDelegate, userState)
+        MyBase.InvokeAsync(Me.onBeginInitializeFileUploadDelegate, New Object() {pFullName, pFirstHundredBytes}, Me.onEndInitializeFileUploadDelegate, Me.onInitializeFileUploadCompletedDelegate, userState)
+    End Sub
+    
+    Public Sub ContinueFileUpload(ByVal pHeaderID As Integer, ByVal pHundredBytes() As Byte) Implements IFileTransferService.ContinueFileUpload
+        MyBase.Channel.ContinueFileUpload(pHeaderID, pHundredBytes)
+    End Sub
+    
+    <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
+    Public Function BeginContinueFileUpload(ByVal pHeaderID As Integer, ByVal pHundredBytes() As Byte, ByVal callback As System.AsyncCallback, ByVal asyncState As Object) As System.IAsyncResult Implements IFileTransferService.BeginContinueFileUpload
+        Return MyBase.Channel.BeginContinueFileUpload(pHeaderID, pHundredBytes, callback, asyncState)
+    End Function
+    
+    <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
+    Public Sub EndContinueFileUpload(ByVal result As System.IAsyncResult) Implements IFileTransferService.EndContinueFileUpload
+        MyBase.Channel.EndContinueFileUpload(result)
+    End Sub
+    
+    Private Function OnBeginContinueFileUpload(ByVal inValues() As Object, ByVal callback As System.AsyncCallback, ByVal asyncState As Object) As System.IAsyncResult
+        Dim pHeaderID As Integer = CType(inValues(0),Integer)
+        Dim pHundredBytes() As Byte = CType(inValues(1),Byte())
+        Return Me.BeginContinueFileUpload(pHeaderID, pHundredBytes, callback, asyncState)
+    End Function
+    
+    Private Function OnEndContinueFileUpload(ByVal result As System.IAsyncResult) As Object()
+        Me.EndContinueFileUpload(result)
+        Return Nothing
+    End Function
+    
+    Private Sub OnContinueFileUploadCompleted(ByVal state As Object)
+        If (Not (Me.ContinueFileUploadCompletedEvent) Is Nothing) Then
+            Dim e As InvokeAsyncCompletedEventArgs = CType(state,InvokeAsyncCompletedEventArgs)
+            RaiseEvent ContinueFileUploadCompleted(Me, New System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState))
+        End If
+    End Sub
+    
+    Public Overloads Sub ContinueFileUploadAsync(ByVal pHeaderID As Integer, ByVal pHundredBytes() As Byte)
+        Me.ContinueFileUploadAsync(pHeaderID, pHundredBytes, Nothing)
+    End Sub
+    
+    Public Overloads Sub ContinueFileUploadAsync(ByVal pHeaderID As Integer, ByVal pHundredBytes() As Byte, ByVal userState As Object)
+        If (Me.onBeginContinueFileUploadDelegate Is Nothing) Then
+            Me.onBeginContinueFileUploadDelegate = AddressOf Me.OnBeginContinueFileUpload
+        End If
+        If (Me.onEndContinueFileUploadDelegate Is Nothing) Then
+            Me.onEndContinueFileUploadDelegate = AddressOf Me.OnEndContinueFileUpload
+        End If
+        If (Me.onContinueFileUploadCompletedDelegate Is Nothing) Then
+            Me.onContinueFileUploadCompletedDelegate = AddressOf Me.OnContinueFileUploadCompleted
+        End If
+        MyBase.InvokeAsync(Me.onBeginContinueFileUploadDelegate, New Object() {pHeaderID, pHundredBytes}, Me.onEndContinueFileUploadDelegate, Me.onContinueFileUploadCompletedDelegate, userState)
+    End Sub
+    
+    Public Sub FinalizeFileUpload(ByVal pHeaderID As Integer, ByVal pHundredBytes() As Byte) Implements IFileTransferService.FinalizeFileUpload
+        MyBase.Channel.FinalizeFileUpload(pHeaderID, pHundredBytes)
+    End Sub
+    
+    <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
+    Public Function BeginFinalizeFileUpload(ByVal pHeaderID As Integer, ByVal pHundredBytes() As Byte, ByVal callback As System.AsyncCallback, ByVal asyncState As Object) As System.IAsyncResult Implements IFileTransferService.BeginFinalizeFileUpload
+        Return MyBase.Channel.BeginFinalizeFileUpload(pHeaderID, pHundredBytes, callback, asyncState)
+    End Function
+    
+    <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
+    Public Sub EndFinalizeFileUpload(ByVal result As System.IAsyncResult) Implements IFileTransferService.EndFinalizeFileUpload
+        MyBase.Channel.EndFinalizeFileUpload(result)
+    End Sub
+    
+    Private Function OnBeginFinalizeFileUpload(ByVal inValues() As Object, ByVal callback As System.AsyncCallback, ByVal asyncState As Object) As System.IAsyncResult
+        Dim pHeaderID As Integer = CType(inValues(0),Integer)
+        Dim pHundredBytes() As Byte = CType(inValues(1),Byte())
+        Return Me.BeginFinalizeFileUpload(pHeaderID, pHundredBytes, callback, asyncState)
+    End Function
+    
+    Private Function OnEndFinalizeFileUpload(ByVal result As System.IAsyncResult) As Object()
+        Me.EndFinalizeFileUpload(result)
+        Return Nothing
+    End Function
+    
+    Private Sub OnFinalizeFileUploadCompleted(ByVal state As Object)
+        If (Not (Me.FinalizeFileUploadCompletedEvent) Is Nothing) Then
+            Dim e As InvokeAsyncCompletedEventArgs = CType(state,InvokeAsyncCompletedEventArgs)
+            RaiseEvent FinalizeFileUploadCompleted(Me, New System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState))
+        End If
+    End Sub
+    
+    Public Overloads Sub FinalizeFileUploadAsync(ByVal pHeaderID As Integer, ByVal pHundredBytes() As Byte)
+        Me.FinalizeFileUploadAsync(pHeaderID, pHundredBytes, Nothing)
+    End Sub
+    
+    Public Overloads Sub FinalizeFileUploadAsync(ByVal pHeaderID As Integer, ByVal pHundredBytes() As Byte, ByVal userState As Object)
+        If (Me.onBeginFinalizeFileUploadDelegate Is Nothing) Then
+            Me.onBeginFinalizeFileUploadDelegate = AddressOf Me.OnBeginFinalizeFileUpload
+        End If
+        If (Me.onEndFinalizeFileUploadDelegate Is Nothing) Then
+            Me.onEndFinalizeFileUploadDelegate = AddressOf Me.OnEndFinalizeFileUpload
+        End If
+        If (Me.onFinalizeFileUploadCompletedDelegate Is Nothing) Then
+            Me.onFinalizeFileUploadCompletedDelegate = AddressOf Me.OnFinalizeFileUploadCompleted
+        End If
+        MyBase.InvokeAsync(Me.onBeginFinalizeFileUploadDelegate, New Object() {pHeaderID, pHundredBytes}, Me.onEndFinalizeFileUploadDelegate, Me.onFinalizeFileUploadCompletedDelegate, userState)
+    End Sub
+    
+    Public Function InitializeDownload(ByVal pHeaderID As Integer) As FileTransferService.BeginDownloadResponse Implements IFileTransferService.InitializeDownload
+        Return MyBase.Channel.InitializeDownload(pHeaderID)
+    End Function
+    
+    <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
+    Public Function BeginInitializeDownload(ByVal pHeaderID As Integer, ByVal callback As System.AsyncCallback, ByVal asyncState As Object) As System.IAsyncResult Implements IFileTransferService.BeginInitializeDownload
+        Return MyBase.Channel.BeginInitializeDownload(pHeaderID, callback, asyncState)
+    End Function
+    
+    <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
+    Public Function EndInitializeDownload(ByVal result As System.IAsyncResult) As FileTransferService.BeginDownloadResponse Implements IFileTransferService.EndInitializeDownload
+        Return MyBase.Channel.EndInitializeDownload(result)
+    End Function
+    
+    Private Function OnBeginInitializeDownload(ByVal inValues() As Object, ByVal callback As System.AsyncCallback, ByVal asyncState As Object) As System.IAsyncResult
+        Dim pHeaderID As Integer = CType(inValues(0),Integer)
+        Return Me.BeginInitializeDownload(pHeaderID, callback, asyncState)
+    End Function
+    
+    Private Function OnEndInitializeDownload(ByVal result As System.IAsyncResult) As Object()
+        Dim retVal As FileTransferService.BeginDownloadResponse = Me.EndInitializeDownload(result)
+        Return New Object() {retVal}
+    End Function
+    
+    Private Sub OnInitializeDownloadCompleted(ByVal state As Object)
+        If (Not (Me.InitializeDownloadCompletedEvent) Is Nothing) Then
+            Dim e As InvokeAsyncCompletedEventArgs = CType(state,InvokeAsyncCompletedEventArgs)
+            RaiseEvent InitializeDownloadCompleted(Me, New InitializeDownloadCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState))
+        End If
+    End Sub
+    
+    Public Overloads Sub InitializeDownloadAsync(ByVal pHeaderID As Integer)
+        Me.InitializeDownloadAsync(pHeaderID, Nothing)
+    End Sub
+    
+    Public Overloads Sub InitializeDownloadAsync(ByVal pHeaderID As Integer, ByVal userState As Object)
+        If (Me.onBeginInitializeDownloadDelegate Is Nothing) Then
+            Me.onBeginInitializeDownloadDelegate = AddressOf Me.OnBeginInitializeDownload
+        End If
+        If (Me.onEndInitializeDownloadDelegate Is Nothing) Then
+            Me.onEndInitializeDownloadDelegate = AddressOf Me.OnEndInitializeDownload
+        End If
+        If (Me.onInitializeDownloadCompletedDelegate Is Nothing) Then
+            Me.onInitializeDownloadCompletedDelegate = AddressOf Me.OnInitializeDownloadCompleted
+        End If
+        MyBase.InvokeAsync(Me.onBeginInitializeDownloadDelegate, New Object() {pHeaderID}, Me.onEndInitializeDownloadDelegate, Me.onInitializeDownloadCompletedDelegate, userState)
+    End Sub
+    
+    Public Function ContinueDownload(ByVal pPartID As Integer) As FileTransferService.ContinueDownloadResponse Implements IFileTransferService.ContinueDownload
+        Return MyBase.Channel.ContinueDownload(pPartID)
+    End Function
+    
+    <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
+    Public Function BeginContinueDownload(ByVal pPartID As Integer, ByVal callback As System.AsyncCallback, ByVal asyncState As Object) As System.IAsyncResult Implements IFileTransferService.BeginContinueDownload
+        Return MyBase.Channel.BeginContinueDownload(pPartID, callback, asyncState)
+    End Function
+    
+    <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
+    Public Function EndContinueDownload(ByVal result As System.IAsyncResult) As FileTransferService.ContinueDownloadResponse Implements IFileTransferService.EndContinueDownload
+        Return MyBase.Channel.EndContinueDownload(result)
+    End Function
+    
+    Private Function OnBeginContinueDownload(ByVal inValues() As Object, ByVal callback As System.AsyncCallback, ByVal asyncState As Object) As System.IAsyncResult
+        Dim pPartID As Integer = CType(inValues(0),Integer)
+        Return Me.BeginContinueDownload(pPartID, callback, asyncState)
+    End Function
+    
+    Private Function OnEndContinueDownload(ByVal result As System.IAsyncResult) As Object()
+        Dim retVal As FileTransferService.ContinueDownloadResponse = Me.EndContinueDownload(result)
+        Return New Object() {retVal}
+    End Function
+    
+    Private Sub OnContinueDownloadCompleted(ByVal state As Object)
+        If (Not (Me.ContinueDownloadCompletedEvent) Is Nothing) Then
+            Dim e As InvokeAsyncCompletedEventArgs = CType(state,InvokeAsyncCompletedEventArgs)
+            RaiseEvent ContinueDownloadCompleted(Me, New ContinueDownloadCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState))
+        End If
+    End Sub
+    
+    Public Overloads Sub ContinueDownloadAsync(ByVal pPartID As Integer)
+        Me.ContinueDownloadAsync(pPartID, Nothing)
+    End Sub
+    
+    Public Overloads Sub ContinueDownloadAsync(ByVal pPartID As Integer, ByVal userState As Object)
+        If (Me.onBeginContinueDownloadDelegate Is Nothing) Then
+            Me.onBeginContinueDownloadDelegate = AddressOf Me.OnBeginContinueDownload
+        End If
+        If (Me.onEndContinueDownloadDelegate Is Nothing) Then
+            Me.onEndContinueDownloadDelegate = AddressOf Me.OnEndContinueDownload
+        End If
+        If (Me.onContinueDownloadCompletedDelegate Is Nothing) Then
+            Me.onContinueDownloadCompletedDelegate = AddressOf Me.OnContinueDownloadCompleted
+        End If
+        MyBase.InvokeAsync(Me.onBeginContinueDownloadDelegate, New Object() {pPartID}, Me.onEndContinueDownloadDelegate, Me.onContinueDownloadCompletedDelegate, userState)
     End Sub
 End Class
